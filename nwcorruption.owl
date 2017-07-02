@@ -1,0 +1,135 @@
+@prefix : <https://olifriedrich.de/semweb/nwcorruption#> .
+@prefix gn: <http://www.geonames.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://olifriedrich.de/semweb/nwcorruption> .
+
+<https://olifriedrich.de/semweb/nwcorruption> rdf:type owl:Ontology ;
+                                               owl:versionIRI <https://olifriedrich.de/semweb/nwcorruption/1.0.0> ;
+                                               owl:imports <http://www.geonames.org/ontology> ,
+                                                           <http://transparency.270a.info/dataset/> ;
+                                               rdfs:label "weltweite Netzwerkzensur"@de .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://olifriedrich.de/semweb/nwcorruption#hasCorruption
+:hasCorruption rdf:type owl:ObjectProperty ;
+               rdfs:domain <http://www.imn.htwk-leipzig.de/~ofriedri/semweb/Country> ;
+               rdfs:range <http://www.imn.htwk-leipzig.de/~ofriedri/semweb/Corruption> .
+
+
+###  https://olifriedrich.de/semweb/nwcorruption#hasIncome
+:hasIncome rdf:type owl:ObjectProperty ;
+           rdfs:domain <http://www.imn.htwk-leipzig.de/~ofriedri/semweb/Country> ;
+           rdfs:range <http://www.imn.htwk-leipzig.de/~ofriedri/semweb/Income> .
+
+
+###  https://olifriedrich.de/semweb/nwcorruption#hasTransparency
+:hasTransparency rdf:type owl:ObjectProperty ;
+                 rdfs:domain <http://www.imn.htwk-leipzig.de/~ofriedri/semweb/Country> ;
+                 rdfs:range <http://www.imn.htwk-leipzig.de/~ofriedri/semweb/NetworkTransparency> .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://olifriedrich.de/semweb/nwcorruption#Continent
+:Continent rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty ;
+           rdfs:domain <http://www.imn.htwk-leipzig.de/~ofriedri/semweb/Country> ;
+           rdfs:range xsd:string ;
+           rdfs:comment "Kontinent, zu dem das Land gehört"@de ;
+           rdfs:label "Kontinent"@de .
+
+
+###  https://olifriedrich.de/semweb/nwcorruption#Name
+:Name rdf:type owl:DatatypeProperty ;
+      rdfs:domain <http://www.imn.htwk-leipzig.de/~ofriedri/semweb/Country> ;
+      rdfs:range xsd:string ;
+      rdfs:comment "Voller Name des Landes"@de ;
+      rdfs:label "Name"@de .
+
+
+###  https://olifriedrich.de/semweb/nwcorruption#Population
+:Population rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf owl:topDataProperty ;
+            rdfs:domain <http://www.imn.htwk-leipzig.de/~ofriedri/semweb/Country> ;
+            rdfs:range xsd:integer ;
+            rdfs:comment "Einwohner des Landes"@de ;
+            rdfs:label "Einwohner"@de .
+
+
+###  https://olifriedrich.de/semweb/nwcorruption#Shortname
+:Shortname rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty ;
+           rdfs:domain <http://www.imn.htwk-leipzig.de/~ofriedri/semweb/Country> ;
+           rdfs:range xsd:string ;
+           rdfs:comment "ISO-Code des Landes"@de ;
+           rdfs:label "Kurzname"@de .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.imn.htwk-leipzig.de/~ofriedri/semweb/Corruption
+<http://www.imn.htwk-leipzig.de/~ofriedri/semweb/Corruption> rdf:type owl:Class ;
+                                                             rdfs:comment "Korruptionsindex"@de .
+
+
+###  http://www.imn.htwk-leipzig.de/~ofriedri/semweb/Country
+<http://www.imn.htwk-leipzig.de/~ofriedri/semweb/Country> rdf:type owl:Class ;
+                                                          rdfs:comment "Land"@de .
+
+
+###  http://www.imn.htwk-leipzig.de/~ofriedri/semweb/Income
+<http://www.imn.htwk-leipzig.de/~ofriedri/semweb/Income> rdf:type owl:Class ;
+                                                         rdfs:comment "Bruttosozialprodukt"@de .
+
+
+###  http://www.imn.htwk-leipzig.de/~ofriedri/semweb/NetworkTransparency
+<http://www.imn.htwk-leipzig.de/~ofriedri/semweb/NetworkTransparency> rdf:type owl:Class ;
+                                                                      rdfs:comment "Netzwerktransparenz"@de .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://olifriedrich.de/semweb/nwcorruption#continent
+:continent rdf:type owl:NamedIndividual .
+
+
+###  https://olifriedrich.de/semweb/nwcorruption#name
+:name rdf:type owl:NamedIndividual .
+
+
+###  https://olifriedrich.de/semweb/nwcorruption#population
+:population rdf:type owl:NamedIndividual .
+
+
+###  https://olifriedrich.de/semweb/nwcorruption#shortname
+:shortname rdf:type owl:NamedIndividual ,
+                    <http://www.imn.htwk-leipzig.de/~ofriedri/semweb/Country> .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( <http://www.imn.htwk-leipzig.de/~ofriedri/semweb/Corruption>
+                <http://www.imn.htwk-leipzig.de/~ofriedri/semweb/Country>
+                <http://www.imn.htwk-leipzig.de/~ofriedri/semweb/Income>
+                <http://www.imn.htwk-leipzig.de/~ofriedri/semweb/NetworkTransparency>
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi

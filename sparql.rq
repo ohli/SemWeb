@@ -1,0 +1,33 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX dbr: <http://dbpedia.org/resource/>
+
+PREFIX wb: <http://worldbank.270a.info/>
+PREFIX wbc: <http://worldbank.270a.info/classification/>
+PREFIX wbcountry: <http://worldbank.270a.info/classification/country/>
+
+PREFIX transparency: <http://transparency.270a.info/>
+PREFIX classification: <http://transparency.270a.info/classification/>
+PREFIX tcountry: <http://www.transparency.270a.info/classification/country#>
+
+PREFIX ooni: <localhost:3030/ooni#>
+
+
+# Get all countries with...
+SELECT DISTINCT ?countryLabel ?tcountry ?population
+WHERE{
+  # network censoring
+  ooni:measureno > "0" .
+  # in the years 2009-2011
+  ?year >= "2009"^^xsd:date, ?year <= "2011" .
+  # with a corruption index score of 3 and below
+  classification <= "3" .
+  dbo:country = ?wbcountry .
+  dbo:country = ?tcountry 
+}
+GROUP BY ?cp ?tcountry ?tcount
