@@ -1,0 +1,75 @@
+@base               <http://www.imn.htwk-leipzig.de/~ofriedri/semweb/> .
+@prefix :           <http://www.imn.htwk-leipzig.de/~ofriedri/semweb/> .
+@prefix owl:        <http://www.w3.org/2002/07/owl#> .
+@prefix geo:        <http://www.geonames.org/ontology#> .
+@prefix xsd:        <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:       <http://www.w3.org/2000/01/rdf-schema#> .
+
+:Country a owl:Class .
+
+    geo:name a            owl:DatatypeProperty ;
+            rdfs:comment  "Name des Landes"@DE ;
+            rdfs:domain   :Country ;
+            rdfs:range    xsd:string .
+
+    geo:shortname a        owl:DatatypeProperty ;
+            rdfs:comment  "Laenderkuerzel"@DE ;
+            rdfs:domain   :Country ;
+            rdfs:range    xsd:string .
+    
+    geo:population a        owl:DatatypeProperty ;
+            rdfs:comment    "Einwohner"@DE ;
+            rdfs:domain     :Country ;
+            rdfs:range      xsd:unsignedInt .
+
+    geo:continent a         owl:DatatypeProperty ;
+            rdfs:comment    "Kontinent"@DE ;
+            rdfs:domain     :Country ;
+            rdfs:range      xsd:string .
+
+    geo:hasTransparency a owl:ObjectProperty ;
+            rdfs:comment  "Transparenzgrad"@DE ;
+            rdfs:domain  :Country ;
+            rdfs:range   :NetworkTransparency .
+
+    geo:hasIncome a owl:ObjectProperty ;
+            rdfs:comment "Einkommen pro Kopf"@DE ;
+            rdfs:domain    :Country ;
+            rdfs:range   :Income .
+
+    geo:hasCorruption a owl:ObjectProperty ;;
+            rdfs:comment "Grad der Korruption"@DE ;
+            rdfs:domain :Country ;
+            rdfs:range :Corruption .
+
+:NetworkTransparency a owl:Class  .
+    
+    :year a owl:DatatypeProperty ;
+            rdfs:comment    "Jahr der Datenerhebung"@DE ;
+            rdfs:domain     :NetworkTransparency ;
+            rdfs:range      xsd:year .
+
+    :measureno a owl:DatatypeProperty ;
+            rdfs:comment    "Anzahl der Messungen"@DE ;
+            rdfs:domain      :NetworkTransparency ;
+            rdfs:range      xsd:unsignedInt .
+    
+:Income a owl:Class .
+
+    :ipc a owl:DataTypeProperty ;
+        rdfs:comment    "Einkommen pro Kopf"@DE ;
+        rdfs:domain     :Income ;
+        rdfs:range      xsd:unsignedInt .
+
+:Corruption a owl:Class .
+    
+    :perception a owl:DatatypeProperty ;
+        rdfs:comment    "wahrgenommene Korruption"@DE ;
+        rdfs:domain     :Corruption ;
+        rdfs:range      xsd:number .
+
+    :year a owl:DatatypeProperty ;
+        rdfs:comment    "Jahr der Erhebung"@DE ;
+        rdfs:domain     :Corruption ;
+        rdfs:range      xsd:year .
+
